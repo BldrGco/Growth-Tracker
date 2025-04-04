@@ -3,47 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Growth Tracker</title>
+    <title>Step-by-Step Scoreboard</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Growth Tracker</h1>
+        <header>
+            <h1>Step-by-Step Scoreboard</h1>
+            <p class="subtitle">Track your growth, one win at a time.</p>
+        </header>
 
-        <!-- Virtuous Cycle Map -->
-        <section class="card">
-            <h2>Virtuous Cycle Map</h2>
-            <canvas id="cycleMap" width="300" height="300"></canvas>
+        <!-- Instructions -->
+        <section class="card instructions">
+            <h2>How It Works</h2>
+            <p>1. <strong>Daily Wins</strong>: Add a small win each day (1-3 points).<br>
+               2. <strong>Weekly Leaps</strong>: Log a bigger milestone weekly (5-15 points).<br>
+               3. Watch your score grow—reset each week to keep it fresh!</p>
         </section>
 
-        <!-- Compound Growth Tracking -->
+        <!-- Daily Wins -->
         <section class="card">
-            <h2>Compound Growth</h2>
-            <input type="number" id="growthInput" placeholder="Add a value">
-            <button onclick="addGrowth()">Track</button>
-            <canvas id="growthChart" width="300" height="150"></canvas>
+            <h2>Daily Win</h2>
+            <div class="input-group">
+                <input type="text" id="winDesc" placeholder="What did you do today?">
+                <select id="winScore">
+                    <option value="1">1 - Meh</option>
+                    <option value="2">2 - Solid</option>
+                    <option value="3">3 - Awesome</option>
+                </select>
+                <button onclick="addWin()">Add</button>
+            </div>
+            <ul id="winList"></ul>
         </section>
 
-        <!-- Threshold Identification -->
+        <!-- Weekly Leaps -->
         <section class="card">
-            <h2>Thresholds</h2>
-            <input type="text" id="thresholdDesc" placeholder="What’s the milestone?">
-            <input type="number" id="thresholdValue" placeholder="Value">
-            <button onclick="addThreshold()">Set</button>
-            <ul id="thresholdList"></ul>
+            <h2>Weekly Leap</h2>
+            <div class="input-group">
+                <input type="text" id="leapDesc" placeholder="Big win this week?">
+                <select id="leapScore">
+                    <option value="5">5 - Good</option>
+                    <option value="10">10 - Great</option>
+                    <option value="15">15 - Huge</option>
+                </select>
+                <button onclick="addLeap()">Add</button>
+            </div>
+            <ul id="leapList"></ul>
         </section>
 
-        <!-- Integration Assessment -->
-        <section class="card">
-            <h2>Mindset Integration</h2>
-            <form id="assessmentForm">
-                <input type="number" min="1" max="10" name="m1" placeholder="Mindset 1 (1-10)"><br>
-                <input type="number" min="1" max="10" name="m2" placeholder="Mindset 2 (1-10)"><br>
-                <input type="number" min="1" max="10" name="m3" placeholder="Mindset 3 (1-10)"><br>
-                <button type="button" onclick="updateRadar()">Assess</button>
-            </form>
-            <canvas id="radarChart" width="300" height="300"></canvas>
+        <!-- Score -->
+        <section class="card score">
+            <h2>Your Score</h2>
+            <p>Week: <span id="weekScore">0</span></p>
+            <p>All-Time: <span id="totalScore">0</span></p>
+            <button onclick="resetWeek()">Start New Week</button>
         </section>
     </div>
     <script src="script.js"></script>
