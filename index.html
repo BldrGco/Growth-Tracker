@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Growth Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For charts -->
+</head>
+<body>
+    <h1>Growth Tracker</h1>
+
+    <!-- Virtuous Cycle Map -->
+    <section>
+        <h2>Virtuous Cycle Map</h2>
+        <canvas id="cycleMap" width="400" height="400"></canvas>
+    </section>
+
+    <!-- Compound Growth Tracking -->
+    <section>
+        <h2>Compound Growth Tracking</h2>
+        <input type="number" id="growthInput" placeholder="Enter growth value">
+        <button onclick="addGrowth()">Add</button>
+        <canvas id="growthChart" width="400" height="200"></canvas>
+    </section>
+
+    <!-- Threshold Identification -->
+    <section>
+        <h2>Threshold Identification</h2>
+        <input type="text" id="thresholdDesc" placeholder="Describe threshold">
+        <input type="number" id="thresholdValue" placeholder="Value">
+        <button onclick="addThreshold()">Add</button>
+        <ul id="thresholdList"></ul>
+    </section>
+
+    <!-- Integration Assessment -->
+    <section>
+        <h2>Integration Assessment</h2>
+        <form id="assessmentForm">
+            <label>Mindset 1 (1-10): <input type="number" min="1" max="10" name="m1"></label><br>
+            <label>Mindset 2 (1-10): <input type="number" min="1" max="10" name="m2"></label><br>
+            <label>Mindset 3 (1-10): <input type="number" min="1" max="10" name="m3"></label><br>
+            <button type="button" onclick="updateRadar()">Submit</button>
+        </form>
+        <canvas id="radarChart" width="400" height="400"></canvas>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
