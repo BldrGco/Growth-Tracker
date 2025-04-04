@@ -1,86 +1,50 @@
-// Virtuous Cycle Map
-const cycleCanvas = document.getElementById('cycleMap').getContext('2d');
-function drawCycle() {
-    cycleCanvas.fillStyle = '#3498db';
-    cycleCanvas.beginPath();
-    cycleCanvas.arc(150, 150, 120, 0, Math.PI * 2);
-    cycleCanvas.fill();
-    cycleCanvas.fillStyle = 'white';
-    cycleCanvas.font = '16px Arial';
-    cycleCanvas.textAlign = 'center';
-    cycleCanvas.fillText('Mindset Cycle', 150, 150);
-}
-drawCycle();
+let weekWins = [];
+let weekLeaps = [];
+let totalScore = 0;
 
-// Compound Growth Tracking
-const growthChartCtx = document.getElementById('growthChart').getContext('2d');
-let growthData = [];
-const growthChart = new Chart(growthChartCtx, {
-    type: 'line',
-    data: {
-        labels: [],
-        datasets: [{
-            label: 'Growth',
-            data: [],
-            borderColor: '#e74c3c',
-            backgroundColor: 'rgba(231, 76, 60, 0.2)',
-            fill: true
-        }]
-    },
-    options: { scales: { y: { beginAtZero: true } } }
-});
-function addGrowth() {
-    const value = parseFloat(document.getElementById('growthInput').value);
-    if (!isNaN(value)) {
-        growthData.push(value);
-        growthChart.data.labels.push(growthData.length);
-        growthChart.data.datasets[0].data = growthData;
-        growthChart.update();
-    }
-}
+const winList = document.getElementById('winList');
+const leapList = document.getElementById('leapList');
+const weekScoreEl = document.getElementById('weekScore');
+const totalScoreEl = document.getElementById('totalScore');
 
-// Threshold Identification
-const thresholdList = document.getElementById('thresholdList');
-function addThreshold() {
-    const desc = document.getElementById('thresholdDesc').value;
-    const value = parseFloat(document.getElementById('thresholdValue').value);
-    if (desc && !isNaN(value)) {
+function addWin() {
+    const desc = document.getElementById('winDesc').value;
+    const score = parseInt(document.getElementById('winScore').value);
+    if (desc) {
+        weekWins.push(score);
         const li = document.createElement('li');
-        li.textContent = `${desc}: ${value}`;
-        thresholdList.appendChild(li);
-        checkThresholds(value);
+        li.textContent = `${desc}: ${score}`;
+        winList.appendChild(li);
+        updateScores();
+        document.getElementById('winDesc').value = ''; // Clear input
     }
-}
-function checkThresholds(currentValue) {
-    const thresholds = Array.from(thresholdList.children).map(li => parseFloat(li.textContent.split(': ')[1]));
-    thresholds.forEach(t => {
-        if (currentValue >= t) {
-            alert(`Woohoo! You’ve hit the ${t} threshold!`);
-        }
-    });
 }
 
-// Integration Assessment
-const radarChartCtx = document.getElementById('radarChart').getContext('2d');
-const radarChart = new Chart(radarChartCtx, {
-    type: 'radar',
-    data: {
-        labels: ['Mindset 1', 'Mindset 2', 'Mindset 3'],
-        datasets: [{
-            label: 'Integration',
-            data: [0, 0, 0],
-            backgroundColor: 'rgba(46, 204, 113, 0.3)',
-            borderColor: '#2ecc71'
-        }]
+function addLeap() {
+    const desc = document.getElementById('leapDesc').value;
+    const score = parseInt(document.getElementById('leapScore').value);
+    if (desc) {
+        weekLeaps.push(score);
+        const li = document.createElement('li');
+        li.textContent = `${desc}: ${score}`;
+        leapList.appendChild(li);
+        updateScores();
+        document.getElementById('leapDesc').value = ''; // Clear input
     }
-});
-function updateRadar() {
-    const form = document.getElementById('assessmentForm');
-    const data = [
-        parseInt(form.m1.value) || 0,
-        parseInt(form.m2.value) || 0,
-        parseInt(form.m3.value) || 0
-    ];
-    radarChart.data.datasets[0].data = data;
-    radarChart.update();
+}
+
+function updateScores() {
+    const weekTotal = weekWins.reduce((a, b) => a + b, 0) + weekLeaps.reduce((a, b) => a + b, 0);
+    weekScoreEl.textContent = weekTotal;
+    totalScoreEl.textContent = totalScore + weekTotal;
+}
+
+function resetWeek() {
+    totalScore += weekWins.reduce((a, b) => a + b, 0) + weekLeaps.reduce((a, b) => a + b, 0);
+    weekWins = [];
+    weekLeaps = [];
+    winList.innerHTML = '';
+    leapList.innerHTML = '';
+    weekScoreEl.textContent = '0';
+    totalScoreEl.textContent = totalScore;
 }
