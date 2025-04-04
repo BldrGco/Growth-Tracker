@@ -1,20 +1,50 @@
 body {
-    font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: 0 auto;
+    font-family: 'Arial', sans-serif;
+    background: #f0f4f8;
+    margin: 0;
     padding: 20px;
 }
-section {
-    margin-bottom: 40px;
+.container {
+    max-width: 900px;
+    margin: 0 auto;
 }
-canvas {
-    border: 1px solid #ccc;
+h1 {
+    text-align: center;
+    color: #2c3e50;
+}
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+h2 {
+    color: #2980b9;
+    margin-top: 0;
 }
 input, button {
+    padding: 8px;
     margin: 5px;
-    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+button {
+    background: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background: #2980b9;
 }
 ul {
-    list-style: none;
     padding: 0;
+}
+li {
+    list-style: none;
+    padding: 5px;
+    background: #ecf0f1;
+    margin: 5px 0;
+    border-radius: 5px;
 }
