@@ -1,12 +1,14 @@
 // Virtuous Cycle Map
-const cycleCanvas = document.getElementById('cycleMap');
-const cycleCtx = cycleCanvas.getContext('2d');
+const cycleCanvas = document.getElementById('cycleMap').getContext('2d');
 function drawCycle() {
-    cycleCtx.clearRect(0, 0, cycleCanvas.width, cycleCanvas.height);
-    cycleCtx.beginPath();
-    cycleCtx.arc(200, 200, 150, 0, Math.PI * 2); // Outer circle
-    cycleCtx.stroke();
-    cycleCtx.fillText("Mindset Reinforcement", 180, 200); // Placeholder
+    cycleCanvas.fillStyle = '#3498db';
+    cycleCanvas.beginPath();
+    cycleCanvas.arc(150, 150, 120, 0, Math.PI * 2);
+    cycleCanvas.fill();
+    cycleCanvas.fillStyle = 'white';
+    cycleCanvas.font = '16px Arial';
+    cycleCanvas.textAlign = 'center';
+    cycleCanvas.fillText('Mindset Cycle', 150, 150);
 }
 drawCycle();
 
@@ -17,8 +19,15 @@ const growthChart = new Chart(growthChartCtx, {
     type: 'line',
     data: {
         labels: [],
-        datasets: [{ label: 'Growth', data: [], borderColor: 'blue', fill: false }]
-    }
+        datasets: [{
+            label: 'Growth',
+            data: [],
+            borderColor: '#e74c3c',
+            backgroundColor: 'rgba(231, 76, 60, 0.2)',
+            fill: true
+        }]
+    },
+    options: { scales: { y: { beginAtZero: true } } }
 });
 function addGrowth() {
     const value = parseFloat(document.getElementById('growthInput').value);
@@ -45,7 +54,9 @@ function addThreshold() {
 function checkThresholds(currentValue) {
     const thresholds = Array.from(thresholdList.children).map(li => parseFloat(li.textContent.split(': ')[1]));
     thresholds.forEach(t => {
-        if (currentValue >= t) console.log(`Threshold ${t} crossed!`); // Replace with alert/notification
+        if (currentValue >= t) {
+            alert(`Woohoo! You’ve hit the ${t} threshold!`);
+        }
     });
 }
 
@@ -55,7 +66,12 @@ const radarChart = new Chart(radarChartCtx, {
     type: 'radar',
     data: {
         labels: ['Mindset 1', 'Mindset 2', 'Mindset 3'],
-        datasets: [{ label: 'Automaticity', data: [0, 0, 0], backgroundColor: 'rgba(0, 255, 0, 0.2)' }]
+        datasets: [{
+            label: 'Integration',
+            data: [0, 0, 0],
+            backgroundColor: 'rgba(46, 204, 113, 0.3)',
+            borderColor: '#2ecc71'
+        }]
     }
 });
 function updateRadar() {
