@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>Step-by-Step Scoreboard</h1>
+            <h1>Your Growth Scoreboard</h1>
             <p class="subtitle">Track your growth, one win at a time.</p>
         </header>
 
@@ -58,6 +58,15 @@
             <p>Week: <span id="weekScore">0</span></p>
             <p>All-Time: <span id="totalScore">0</span></p>
             <button onclick="resetWeek()">Start New Week</button>
+        </section>
+
+        <!-- Tracker Summary -->
+        <section class="card tracker">
+            <h2>Your Progress Tracker</h2>
+            <p><strong>Daily Wins Total:</strong> <span id="dailyTotal">0</span></p>
+            <p><strong>Weekly Leaps Total:</strong> <span id="leapTotal">0</span></p>
+            <p><strong>Week’s Total:</strong> <span id="weekTotal">0</span></p>
+            <p class="tracker-explanation">Here’s the deal: Your daily wins (1-3 points each) stack up small victories, while weekly leaps (5-15 points) mark big breakthroughs. Aim for 10-15 points a week to start—20+ means you’re crushing it!</p>
         </section>
     </div>
     <script src="script.js"></script>
