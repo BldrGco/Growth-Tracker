@@ -6,6 +6,9 @@ const winList = document.getElementById('winList');
 const leapList = document.getElementById('leapList');
 const weekScoreEl = document.getElementById('weekScore');
 const totalScoreEl = document.getElementById('totalScore');
+const dailyTotalEl = document.getElementById('dailyTotal');
+const leapTotalEl = document.getElementById('leapTotal');
+const weekTotalEl = document.getElementById('weekTotal');
 
 function addWin() {
     const desc = document.getElementById('winDesc').value;
@@ -34,9 +37,15 @@ function addLeap() {
 }
 
 function updateScores() {
-    const weekTotal = weekWins.reduce((a, b) => a + b, 0) + weekLeaps.reduce((a, b) => a + b, 0);
+    const dailyTotal = weekWins.reduce((a, b) => a + b, 0);
+    const leapTotal = weekLeaps.reduce((a, b) => a + b, 0);
+    const weekTotal = dailyTotal + leapTotal;
+
     weekScoreEl.textContent = weekTotal;
     totalScoreEl.textContent = totalScore + weekTotal;
+    dailyTotalEl.textContent = dailyTotal;
+    leapTotalEl.textContent = leapTotal;
+    weekTotalEl.textContent = weekTotal;
 }
 
 function resetWeek() {
@@ -47,4 +56,7 @@ function resetWeek() {
     leapList.innerHTML = '';
     weekScoreEl.textContent = '0';
     totalScoreEl.textContent = totalScore;
+    dailyTotalEl.textContent = '0';
+    leapTotalEl.textContent = '0';
+    weekTotalEl.textContent = '0';
 }
