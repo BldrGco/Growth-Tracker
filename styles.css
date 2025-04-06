@@ -95,14 +95,22 @@ li {
     color: #2d3436;
     animation: slideIn 0.3s ease;
 }
-.score p {
+.score p, .tracker p {
     font-size: 1.2em;
     margin: 10px 0;
     font-family: 'Roboto Mono', monospace;
 }
-.score span {
+.score span, .tracker span {
     color: #d63031;
     font-weight: bold;
+}
+.tracker-explanation {
+    font-size: 0.95em;
+    line-height: 1.5;
+    color: #636e72;
+    background: #f1f2f6;
+    padding: 10px;
+    border-radius: 8px;
 }
 @keyframes slideIn {
     from { opacity: 0; transform: translateY(10px); }
